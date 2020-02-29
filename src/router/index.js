@@ -7,6 +7,8 @@ const Profile = () => import('views/user/appProfile/Profile')
 const Answer = () => import('views/user/appAnswer/Answer')
 const Question = () => import ("views/user/question/Question");
 const System = () => import ("views/manager/system/System");
+const Login = () => import("views/login/Login")
+const Register = () => import("views/register/Register")
 
 // 1.安装插件
 Vue.use(VueRouter)
@@ -14,7 +16,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    redirect: '/home'
+    redirect: '/answer'
+  },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/register',
+    component: Register
   },
   {
     path: '/home',
