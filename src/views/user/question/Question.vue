@@ -1,8 +1,19 @@
 <template>
-  <div class="question">
-    <ques-stem/>
-    <ques-item-view :itemdata="itemdata"></ques-item-view>
-  </div>
+  <el-container>
+    <el-header></el-header>
+    <el-container>
+      <el-main>
+        <ques-stem/>
+        <ques-item-view :itemdata="itemdata"></ques-item-view>
+        <el-button-group>
+          <el-button type="submit">提交</el-button>
+          <el-button class="quit">退出</el-button>
+        </el-button-group>
+      </el-main>
+      <el-aside></el-aside>
+    </el-container>
+    <el-footer></el-footer>
+  </el-container>
 </template>
 
 <script>

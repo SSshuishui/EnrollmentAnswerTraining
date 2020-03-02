@@ -9,12 +9,16 @@
               :value="item.value">
       </el-option>
     </el-select>
-    <el-button type="primary">确定</el-button>
+    <el-button @click="toQuestion" type="primary">确定</el-button>
   </div>
 </template>
 
 <script>
   export default {
+    name: 'SelectComp',
+    props: {
+
+    },
     data() {
       return {
         options: [{
@@ -34,6 +38,11 @@
           label: '湖南省'
         }],
         value: ''
+      }
+    },
+    methods: {
+      toQuestion() {
+        this.$router.replace('/question')
       }
     }
   }

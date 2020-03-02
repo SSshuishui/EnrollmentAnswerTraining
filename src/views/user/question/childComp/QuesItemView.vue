@@ -1,7 +1,7 @@
 <template>
   <div>
     <ques-item v-for="item in itemdata">
-      <p>{{item}}</p>
+      <p class="text item">{{item}}</p>
     </ques-item>
   </div>
 </template>
@@ -20,9 +20,6 @@
     },
     components: {
       QuesItem
-    },
-    created() {
-      console.log(this.itemdata);
     }
   }
 </script>

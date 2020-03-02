@@ -9,6 +9,7 @@ const Question = () => import ("views/user/question/Question");
 const System = () => import ("views/manager/system/System");
 const Login = () => import("views/login/Login")
 const Register = () => import("views/register/Register")
+const NavMenu = () => import("views/user/appProfile/childComp/NavMenu")
 
 // 1.安装插件
 Vue.use(VueRouter)
@@ -33,6 +34,10 @@ const routes = [
   {
     path: '/profile',
     component: Profile
+  },
+  {
+    path: '/profile/logout',
+    component: NavMenu
   },
   {
     path: '/answer',

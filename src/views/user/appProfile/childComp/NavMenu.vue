@@ -5,7 +5,7 @@
       <el-radio-button :label="true">收起</el-radio-button>
     </el-radio-group>
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-      <el-menu-item index="1">
+      <el-menu-item index="1" @click="informationClick">
         <i class="el-icon-user-solid"></i>
         <span slot="title">个人信息</span>
       </el-menu-item>
@@ -26,7 +26,7 @@
         <i class="el-icon-switch-button"></i>
         <span slot="title">
           退出登录
-          <router-link to="/login"></router-link>
+
         </span>
       </el-menu-item>
 
@@ -41,16 +41,17 @@
     name: "navMenu",
     data() {
       return {
-        isCollapse: true
+        isCollapse: true,
+        isShower: true
       };
     },
     methods: {
-
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
+      },
+      informationClick() {
+        this.$emit("infoShowChange", this.isShower)
       }
     }
   }
