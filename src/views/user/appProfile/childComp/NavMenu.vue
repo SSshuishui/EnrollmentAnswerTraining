@@ -9,11 +9,11 @@
         <i class="el-icon-user-solid"></i>
         <span slot="title">个人信息</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="2" @click="recordClick">
         <i class="el-icon-time"></i>
         <span slot="title">答题记录</span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="3" @click="wrongClick">
         <i class="el-icon-chat-line-round"></i>
         <span slot="title">我的错题</span>
       </el-menu-item>
@@ -52,6 +52,12 @@
       },
       informationClick() {
         this.$emit("infoShowChange", this.isShower)
+      },
+      recordClick() {
+        this.$emit("recordShowChange", this.isShower)
+      },
+      wrongClick() {
+        this.$emit("wrongShowChange", this.isShower)
       }
     }
   }

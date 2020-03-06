@@ -4,13 +4,17 @@
     <el-container>
     <!--侧边导航栏-->
       <el-aside width="220px">
-        <nav-menu @infoShowChange="showChange($event)"/>
+        <nav-menu @infoShowChange="infoShowChange($event)"
+                  @recordShowChange="recordShowChange($event)"
+                  @wrongShowChange="wrongShowChange($event)"/>
       </el-aside>
     <!--中间部分  -->
       <el-container>
         <el-main>
             <!--放其他组件-->
           <information v-show="infoShow"/>
+          <answer-record v-show="recordShow"/>
+          <wrong-ques v-show="wrongShow"/>
         </el-main>
       </el-container>
     </el-container>
@@ -26,24 +30,42 @@
   // 子组件
   import NavMenu from "./childComp/NavMenu";
   import Information from "./childComp/Information";
+  import AnswerRecord from "./childComp/AnswerRecord";
+  import WrongQues from "./childComp/WrongQues";
 
   export default {
     name: "Profile",
     data() {
       return {
-        infoShow: false
+        infoShow: false,
+        recordShow: false,
+        wrongShow: false
       }
     },
     components: {
       Information,
       MainNavBar,
       FootBar,
-      NavMenu
+      NavMenu,
+      AnswerRecord,
+      WrongQues
     },
 
     methods: {
-      showChange(flag) {
+      infoShowChange(flag) {
         this.infoShow = flag
+        this.recordShow = false
+        this.wrongShow = false
+      },
+      recordShowChange(flag) {
+        this.recordShow = flag
+        this.infoShow = false
+        this.wrongShow = false
+      },
+      wrongShowChange(flag) {
+        this.wrongShow = flag
+        this.recordShow = false
+        this.infoShow = false
       }
     }
   }

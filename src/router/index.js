@@ -3,13 +3,12 @@ import VueRouter from 'vue-router'
 
 // 导入组件
 const Home = () => import('views/user/appHome/Home')
-const Profile = () => import('views/user/appProfile/Profile')
 const Answer = () => import('views/user/appAnswer/Answer')
 const Question = () => import ("views/user/question/Question");
 const System = () => import ("views/manager/system/System");
 const Login = () => import("views/login/Login")
 const Register = () => import("views/register/Register")
-const NavMenu = () => import("views/user/appProfile/childComp/NavMenu")
+const Profile = () => import('views/user/appProfile/Profile')
 
 // 1.安装插件
 Vue.use(VueRouter)
@@ -36,10 +35,6 @@ const routes = [
     component: Profile
   },
   {
-    path: '/profile/logout',
-    component: NavMenu
-  },
-  {
     path: '/answer',
     component: Answer
   },
@@ -50,7 +45,7 @@ const routes = [
   {
     path: '/system',
     component: System
-  },
+  }
 ]
 
 // 2.创建路由对象

@@ -1,31 +1,32 @@
 <template>
-  <nav-bar>
-    <nav-bar-item path="/home">
-      <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="">
-      <img slot="item-icon-activate" src="~assets/img/tabbar/home_active.svg" alt="">
-      <div slot="item-text">首页</div>
-    </nav-bar-item>
-    <nav-bar-item path="/answer">
-      <img slot="item-icon" src="~assets/img/tabbar/category.svg" alt="">
-      <img slot="item-icon-activate" src="~assets/img/tabbar/category_active.svg" alt="">
-      <div slot="item-text">答题</div>
-    </nav-bar-item>
-    <nav-bar-item path="/profile">
-      <img slot="item-icon" src="~assets/img/tabbar/profile.svg" alt="">
-      <img slot="item-icon-activate" src="~assets/img/tabbar/profile_active.svg" alt="">
-      <div slot="item-text">个人中心</div>
-    </nav-bar-item>
-  </nav-bar>
+  <el-menu
+          class="el-menu-demo"
+          mode="horizontal"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+    <el-menu-item index="1" route="/home">首页</el-menu-item>
+    <el-submenu index="2">
+      <template slot="title">答题</template>
+      <el-menu-item index="2-1">选项1</el-menu-item>
+      <el-menu-item index="2-2">选项2</el-menu-item>
+      <el-menu-item index="2-3">选项3</el-menu-item>
+      <el-submenu index="2-4">
+        <template slot="title">选项4</template>
+        <el-menu-item index="2-4-1">选项1</el-menu-item>
+        <el-menu-item index="2-4-2">选项2</el-menu-item>
+        <el-menu-item index="2-4-3">选项3</el-menu-item>
+      </el-submenu>
+    </el-submenu>
+    <el-menu-item index="3">个人中心</el-menu-item>
+  </el-menu>
 </template>
 
 <script>
-  import NavBar from "components/common/navbar/NavBar";
-  import NavBarItem from "components/common/navbar/NavBarItem";
   export default {
     name: "MainNavBar",
-    components: {
-      NavBar,
-      NavBarItem
+    methods: {
+
     }
   }
 </script>

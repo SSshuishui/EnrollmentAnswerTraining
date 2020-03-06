@@ -1,6 +1,6 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="1">用户管理</el-menu-item>
+    <el-menu-item index="1" @click="userScoreClick">用户管理</el-menu-item>
     <el-submenu index="2">
       <template slot="title">题目管理</template>
       <el-menu-item index="2-1">选项1</el-menu-item>
@@ -30,12 +30,13 @@
     name: "ManagerNavMenu",
     data() {
       return {
-        activeIndex: '1'
+        activeIndex: '1',
+        isShower: true
       }
     },
     methods: {
-      handleSelect(key, keyPath) {
-
+      userScoreClick() {
+        this.$emit("userScoreShowChange", this.isShower)
       }
     }
   }
