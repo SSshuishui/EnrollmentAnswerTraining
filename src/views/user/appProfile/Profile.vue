@@ -1,25 +1,28 @@
 <template>
-  <el-container>
-    <el-header><main-nav-bar/></el-header>
+  <div class="profileWrap">
     <el-container>
-    <!--侧边导航栏-->
-      <el-aside width="220px">
-        <nav-menu @infoShowChange="infoShowChange($event)"
-                  @recordShowChange="recordShowChange($event)"
-                  @wrongShowChange="wrongShowChange($event)"/>
-      </el-aside>
-    <!--中间部分  -->
-      <el-container>
-        <el-main>
+      <el-header><main-nav-bar/></el-header>
+      <el-container style="height: 540px">
+        <!--侧边导航栏-->
+        <el-aside width="220px">
+          <nav-menu @infoShowChange="infoShowChange($event)"
+                    @recordShowChange="recordShowChange($event)"
+                    @wrongShowChange="wrongShowChange($event)"/>
+        </el-aside>
+        <!--中间部分  -->
+        <el-container>
+          <el-main>
             <!--放其他组件-->
-          <information v-show="infoShow"/>
-          <answer-record v-show="recordShow"/>
-          <wrong-ques v-show="wrongShow"/>
-        </el-main>
+            <information v-show="infoShow"/>
+            <answer-record v-show="recordShow"/>
+            <wrong-ques v-show="wrongShow"/>
+          </el-main>
+        </el-container>
       </el-container>
+      <el-footer><foot-bar/></el-footer>
     </el-container>
-    <foot-bar/>
-  </el-container>
+
+  </div>
 </template>
 
 <script>
@@ -72,5 +75,13 @@
 </script>
 
 <style scoped>
-
+  .profileWrap {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

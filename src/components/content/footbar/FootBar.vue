@@ -20,10 +20,6 @@
 
 <style scoped>
   #foot_nav {
-    position: fixed;
-    left: 40px;
-    right: 40px;
-    bottom: 0;
     background-color: #F2F6FC;
   }
 

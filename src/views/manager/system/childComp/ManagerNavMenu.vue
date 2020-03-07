@@ -1,19 +1,8 @@
 <template>
-  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="1" @click="userScoreClick">用户管理</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">题目管理</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
-      <el-submenu index="2-4">
-        <template slot="title">选项4</template>
-        <el-menu-item index="2-4-1">选项1</el-menu-item>
-        <el-menu-item index="2-4-2">选项2</el-menu-item>
-        <el-menu-item index="2-4-3">选项3</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="3">系统信息</el-menu-item>
+  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+    <el-menu-item index="1" @click="userScoreClick">分数情况</el-menu-item>
+    <el-menu-item index="2" @click="userInfoClick">用户信息</el-menu-item>
+    <el-menu-item index="3" @click="systemClick">系统信息</el-menu-item>
     <el-menu-item index="4" class="right">
       <i class="el-icon-switch-button"></i>
       <span slot="title">
@@ -37,6 +26,12 @@
     methods: {
       userScoreClick() {
         this.$emit("userScoreShowChange", this.isShower)
+      },
+      userInfoClick() {
+        this.$emit("userInfoShowChange", this.isShower)
+      },
+      systemClick() {
+        this.$emit("sysConditionShowChange", this.isShower)
       }
     }
   }

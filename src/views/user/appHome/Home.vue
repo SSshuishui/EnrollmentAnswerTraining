@@ -1,18 +1,19 @@
 <template>
-  <el-container>
-    <el-header><main-nav-bar/></el-header>
+  <div class="homeWrap">
+    <el-container style="height: 100%" direction="vertical">
+      <el-header><main-nav-bar/></el-header>
 
-    <el-main>
-      <el-carousel :interval="5000" arrow="always" height="420px">
-        <el-carousel-item v-for="item in imageItem">
-          <el-image :src="item"></el-image>
-        </el-carousel-item>
-      </el-carousel>
-    </el-main>
+      <el-main style="height: 540px">
+        <el-carousel :interval="5000" arrow="always">
+          <el-carousel-item v-for="item in imageItem">
+            <el-image :src="item"></el-image>
+          </el-carousel-item>
+        </el-carousel>
+      </el-main>
 
-    <foot-bar/>
-
-  </el-container>
+      <el-footer><foot-bar/></el-footer>
+    </el-container>
+  </div>
 </template>
 
 <script>
@@ -38,19 +39,14 @@
 </script>
 
 <style scoped>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
+  .homeWrap {
+    position: absolute;
+    padding: 0;
     margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
 </style>

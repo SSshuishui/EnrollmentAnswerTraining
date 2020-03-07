@@ -1,37 +1,70 @@
 <template>
-  <el-container>
-    <el-header>
-      <manager-nav-menu @userScoreShowChange="scoreShowChange($event)"/>
-    </el-header>
-    <el-main>
-   <!--   其他相关组件   -->
-      <UserQuesCondition v-show="userScoreShow"/>
-    </el-main>
-  </el-container>
+  <div class="systemWrap">
+    <el-container>
+      <el-header>
+        <manager-nav-menu @userScoreShowChange="scoreShowChange($event)"
+                          @userInfoShowChange="infoShowChange($event)"
+                          @sysConditionShowChange="systemShowChange($event)"/>
+      </el-header>
+
+      <el-main style="height: 540px">
+        <!--   其他相关组件   -->
+        <UserQuesCondition v-show="userScoreShow"/>
+        <user-info v-show="userInfoShow"/>
+        <system-condition v-show="sysConditionShow"/>
+      </el-main>
+    </el-container>
+  </div>
 </template>
 
 <script>
   import UserQuesCondition from "./childComp/UserQuesCondition";
   import ManagerNavMenu from "./childComp/ManagerNavMenu";
+  import UserInfo from "./childComp/UserInfo";
+  import SystemCondition from "./childComp/SystemCondition";
   export default {
     name: "System",
     data() {
       return {
-        userScoreShow: false
+        userScoreShow: false,
+        userInfoShow: false,
+        sysConditionShow: false
       }
     },
     components: {
       ManagerNavMenu,
-      UserQuesCondition
+      UserQuesCondition,
+      UserInfo,
+      SystemCondition
     },
     methods: {
       scoreShowChange(flag) {
-        this.userScoreShow = flag
+        this.userScoreShow = flag;
+        this.userInfoShow = false;
+        this.sysConditionShow = false
+      },
+      infoShowChange(flag) {
+        this.userInfoShow = flag;
+        this.userScoreShow = false;
+        this.sysConditionShow = false
+      },
+      systemShowChange(flag) {
+        this.sysConditionShow = flag;
+        this.userInfoShow = false;
+        this.userScoreShow = false
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .systemWrap {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
