@@ -14,8 +14,7 @@
 
 <script>
   export default {
-    name: "MainNavBar",
-    methods: {}
+    name: "MainNavBar"
   }
 </script>
 

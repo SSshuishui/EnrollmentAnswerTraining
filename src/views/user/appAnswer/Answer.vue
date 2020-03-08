@@ -3,13 +3,11 @@
     <el-container>
       <el-header><main-nav-bar/></el-header>
 
-      <el-main style="height: 540px">
+      <el-main style="height: 540px; margin-top: 3px">
         <select-comp/>
       </el-main>
 
-      <el-footer>
-        <foot-bar/>
-      </el-footer>
+      <el-footer style="margin-bottom: 3px"><foot-bar/></el-footer>
     </el-container>
   </div>
 </template>
@@ -40,4 +38,11 @@
     width: 100%;
     height: 100%;
   }
+  .el-header {
+    padding: 0;
+  }
+  .el-main{
+    padding: 0;
+  }
+
 </style>

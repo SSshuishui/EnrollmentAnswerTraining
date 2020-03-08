@@ -1,17 +1,17 @@
 <template>
   <div class="homeWrap">
-    <el-container style="height: 100%" direction="vertical">
+    <el-container>
       <el-header><main-nav-bar/></el-header>
 
-      <el-main style="height: 540px">
-        <el-carousel :interval="5000" arrow="always">
+      <el-main style="height: 540px; margin-top: 3px">
+        <el-carousel :interval="5000" arrow="always" height="530px">
           <el-carousel-item v-for="item in imageItem">
             <el-image :src="item"></el-image>
           </el-carousel-item>
         </el-carousel>
       </el-main>
 
-      <el-footer><foot-bar/></el-footer>
+      <el-footer style="margin-bottom: 5px"><foot-bar/></el-footer>
     </el-container>
   </div>
 </template>
@@ -48,5 +48,10 @@
     width: 100%;
     height: 100%;
   }
-
+  .el-header {
+    padding: 0;
+  }
+  .el-main{
+    padding: 0;
+  }
 </style>

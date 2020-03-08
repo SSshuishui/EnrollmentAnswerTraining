@@ -2,7 +2,8 @@
   <div class="profileWrap">
     <el-container>
       <el-header><main-nav-bar/></el-header>
-      <el-container style="height: 540px">
+
+      <el-container style="height: 540px; margin-top: 3px">
         <!--侧边导航栏-->
         <el-aside width="220px">
           <nav-menu @infoShowChange="infoShowChange($event)"
@@ -19,9 +20,9 @@
           </el-main>
         </el-container>
       </el-container>
-      <el-footer><foot-bar/></el-footer>
-    </el-container>
 
+      <el-footer style="margin-bottom: 3px"><foot-bar/></el-footer>
+    </el-container>
   </div>
 </template>
 
@@ -83,5 +84,8 @@
     left: 0;
     width: 100%;
     height: 100%;
+  }
+  .el-header {
+    padding: 0;
   }
 </style>

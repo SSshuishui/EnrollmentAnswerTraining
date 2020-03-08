@@ -1,7 +1,7 @@
 <template>
   <div id="foot_nav">
     <div class="foot_top">
-      <a>友情链接：</a>
+      <el-link type="primary" disabled>友情链接：</el-link>
       <el-link type="primary" href="http://www.dangjian.cn" target="_Blank">党建网</el-link>
       <el-link type="primary" href="http://www.wenming.cn/" target="_Blank">中国文明网</el-link>
       <el-link type="primary" href="http://news.12371.cn/dzybmbdj/zzb/" target="_Blank">中央组织部</el-link>
@@ -21,16 +21,20 @@
 <style scoped>
   #foot_nav {
     background-color: #F2F6FC;
+    margin-bottom: 4px;
   }
 
   .foot_top {
     display: flex;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 5px 3px;
   }
-  .foot_top a {
+
+  .el-link {
     flex: 1;
   }
+
   .foot_bot{
     text-align: center;
     margin-bottom: 10px;
