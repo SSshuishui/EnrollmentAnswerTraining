@@ -7,7 +7,6 @@
       <i class="el-icon-switch-button"></i>
       <span slot="title">
           退出登录
-<!--          <router-link to="/login"></router-link>-->
         </span>
     </el-menu-item>
 
@@ -38,12 +37,5 @@
 </script>
 
 <style scoped>
-  .nav-menu {
-    margin-top: 3%;
-  }
 
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
 </style>

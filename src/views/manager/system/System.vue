@@ -2,9 +2,9 @@
   <div class="systemWrap">
     <el-container>
       <el-header>
-        <manager-nav-menu @userScoreShowChange="scoreShowChange($event)"
-                          @userInfoShowChange="infoShowChange($event)"
-                          @sysConditionShowChange="systemShowChange($event)"/>
+        <manager-nav-menu @userScoreShowChange="scoreShowChange"
+                          @userInfoShowChange="infoShowChange"
+                          @sysConditionShowChange="systemShowChange"/>
       </el-header>
 
       <el-main style="height: 540px">
@@ -26,7 +26,7 @@
     name: "System",
     data() {
       return {
-        userScoreShow: false,
+        userScoreShow: true,
         userInfoShow: false,
         sysConditionShow: false
       }

@@ -1,8 +1,8 @@
 <template>
   <div class="info">
-    <div data-container="handlebars">
-      <table class="account-table table " cellpadding="0" cellspacing="0">
-        <tbody>
+    <div class="info-detail">
+      <table class="info-table">
+        <tbody class="info-body">
         <tr>
           <td class="text-r">工号：</td>
           <td>2016303128</td>
@@ -20,31 +20,13 @@
           <td>本科生</td>
         </tr>
         <tr>
-          <td class="text-r">QQ号码：</td>
-          <td id="qqInfo">1580746585</td>
-          <td class="text-r"><a href="#" id="updateQQ" data-component="modal" data-modal-target="#modal-container" data-callback="updateQQ" data-url="https://ecampus.nwpu.edu.cn/web/guest/usercenter?p_p_id=accountsecurity_WAR_jigsawportalusercenterportlet&amp;p_p_lifecycle=0&amp;p_p_state=exclusive&amp;p_p_mode=view&amp;p_p_col_id=column-1&amp;p_p_col_count=1&amp;_accountsecurity_WAR_jigsawportalusercenterportlet_action=updateQQ" data-title="QQ设置">修改</a></td>
-        </tr>
-        <tr>
-          <td class="text-r">微信号码：</td>
-          <td id="wxInfo">s1580746585</td>
-          <td class="text-r"><a href="#" id="updateWx" data-component="modal" data-modal-target="#modal-container" data-callback="updateWx" data-url="https://ecampus.nwpu.edu.cn/web/guest/usercenter?p_p_id=accountsecurity_WAR_jigsawportalusercenterportlet&amp;p_p_lifecycle=0&amp;p_p_state=exclusive&amp;p_p_mode=view&amp;p_p_col_id=column-1&amp;p_p_col_count=1&amp;_accountsecurity_WAR_jigsawportalusercenterportlet_action=updateWx" data-title="微信设置">修改</a></td>
+          <td class="text-r">手机号码：</td>
+          <td id="wxInfo">17629063945</td>
+          <td class="modify"><el-button type="text" @click="open">修改</el-button></td>
         </tr>
         </tbody>
       </table>
     </div>
-
-    <el-button type="text" @click="operationVisible = true">点击打开</el-button>
-    <el-dialog
-            title="提示"
-            :visible.sync="operationVisible"
-            width="30%"
-            :before-close="handleClose">
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-  <el-button @click="operationVisible = false">取 消</el-button>
-  <el-button type="primary" @click="operationVisible = false">确 定</el-button>
-  </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -57,17 +39,50 @@
       };
     },
     methods: {
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
+      open() {
+        this.$prompt('请输入手机号码', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          inputErrorMessage: '手机号码格式不正确'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '你的手机号码是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+        });
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .info{
+    width: 400px;
+    height: 400px;
+  }
+  .info-detail{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .info-body tr>td{
+    height: 40px;
+    padding: 5px;
+    margin: 15px;
+  }
+  .modify a{
+    margin-left: 5px;
+    color: #8c939d;
+  }
+  .text-r{
+    font-size: 16px;
+    color: black;
+  }
 </style>

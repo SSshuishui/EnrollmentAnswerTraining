@@ -2,7 +2,7 @@
   <div>
     <el-table
             :data="tableData"
-            height="250"
+            height="500"
             border
             style="width: 100%">
       <el-table-column
@@ -19,6 +19,10 @@
               prop="score"
               label="分数">
       </el-table-column>
+      <el-table-column
+              prop="accuracy"
+              label="正确率">
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -29,33 +33,40 @@
     data() {
       return {
         tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          score: '30'
+          date: '2020-05-02',
+          name: '张三',
+          score: '30',
+          accuracy: '30%'
         }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          score: '40'
+          date: '2020-05-03',
+          name: '张三',
+          score: '40',
+          accuracy: '40%'
         }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          score: '50'
+          date: '2020-05-04',
+          name: '张三',
+          score: '50',
+          accuracy: '50%'
         }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          score: '60'
+          date: '2020-05-01',
+          name: '张三',
+          score: '60',
+          accuracy: '60%'
         }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          score: '70'
+          date: '2020-05-08',
+          name: '张三',
+          score: '70',
+          accuracy: '70%'
         }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          score: '80'
+          date: '2020-05-06',
+          name: '张三',
+          score: '80',
+          accuracy: '80%'
         }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          score: '90'
+          date: '2020-05-07',
+          name: '张三',
+          score: '90',
+          accuracy: '90%'
         }]
       }
     }

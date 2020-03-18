@@ -22,8 +22,6 @@
 </template>
 
 <script>
-  import QuesItem from "./QuesItem";
-
   export default {
     name: "QuesItemView",
     data () {
@@ -40,7 +38,6 @@
       },
     },
     components: {
-      QuesItem
     },
     methods: {
 
