@@ -17,10 +17,12 @@
       </el-table-column>
       <el-table-column
               prop="score"
+              sortable
               label="分数">
       </el-table-column>
       <el-table-column
               prop="accuracy"
+              sortable
               label="正确率">
       </el-table-column>
     </el-table>

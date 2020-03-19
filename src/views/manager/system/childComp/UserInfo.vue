@@ -1,8 +1,9 @@
 <template>
   <div>
     <el-table
-            :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+            :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.school || data.id)"
             style="width: 100%"
+            border
             height="500px">
       <el-table-column
               label="工号"
@@ -25,7 +26,7 @@
               prop="lastTime">
       </el-table-column>
       <el-table-column
-              align="right">
+              align="center">
         <template slot="header" slot-scope="scope">
           <el-input
                   v-model="search"
@@ -35,12 +36,12 @@
         <template slot-scope="scope">
           <el-button
                   size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">修改
+                  @click="modifyUserInfo">修改
           </el-button>
           <el-button
                   size="mini"
                   type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除
+                  @click="deleteUser(date.id)">删除
           </el-button>
         </template>
       </el-table-column>
@@ -85,11 +86,11 @@
       }
     },
     methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
+      modifyUserInfo() {
+
       },
-      handleDelete(index, row) {
-        console.log(index, row);
+      deleteUser(id) {
+
       }
     },
   }

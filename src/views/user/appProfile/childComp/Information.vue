@@ -22,7 +22,9 @@
         <tr>
           <td class="text-r">手机号码：</td>
           <td id="wxInfo">17629063945</td>
-          <td class="modify"><el-button type="text" @click="open">修改</el-button></td>
+          <td class="modify">
+            <el-button type="text" @click="open">修改</el-button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+
   export default {
     name: "Information",
     data() {
@@ -43,45 +46,44 @@
         this.$prompt('请输入手机号码', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+          inputPattern: /^1[3456789]\d{9}$/,
           inputErrorMessage: '手机号码格式不正确'
-        }).then(({ value }) => {
+        }).then(() => {
           this.$message({
             type: 'success',
-            message: '你的手机号码是: ' + value
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消输入'
-          });
-        });
+            message: '修改成功!'
+          })
+        })
       }
     }
   }
 </script>
 
 <style scoped>
-  .info{
+  .info {
     width: 400px;
     height: 400px;
   }
-  .info-detail{
+
+  .info-detail {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .info-body tr>td{
+
+  .info-body tr > td {
     height: 40px;
     padding: 5px;
     margin: 15px;
   }
-  .modify a{
+
+  .modify a {
     margin-left: 5px;
     color: #8c939d;
   }
-  .text-r{
+
+  .text-r {
     font-size: 16px;
     color: black;
   }

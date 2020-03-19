@@ -4,7 +4,8 @@
       <el-header>
         <manager-nav-menu @userScoreShowChange="scoreShowChange"
                           @userInfoShowChange="infoShowChange"
-                          @sysConditionShowChange="systemShowChange"/>
+                          @sysConditionShowChange="systemShowChange"
+                          @quesBankShowChange="quesBankShowChange"/>
       </el-header>
 
       <el-main style="height: 540px">
@@ -22,13 +23,15 @@
   import ManagerNavMenu from "./childComp/ManagerNavMenu";
   import UserInfo from "./childComp/UserInfo";
   import SystemCondition from "./childComp/SystemCondition";
+
   export default {
     name: "System",
     data() {
       return {
         userScoreShow: true,
         userInfoShow: false,
-        sysConditionShow: false
+        sysConditionShow: false,
+        quesBankShowShow: false,
       }
     },
     components: {
@@ -41,15 +44,24 @@
       scoreShowChange(flag) {
         this.userScoreShow = flag;
         this.userInfoShow = false;
-        this.sysConditionShow = false
+        this.sysConditionShow = false;
+        this.quesBankShowShow = false
       },
       infoShowChange(flag) {
         this.userInfoShow = flag;
         this.userScoreShow = false;
-        this.sysConditionShow = false
+        this.sysConditionShow = false;
+        this.quesBankShowShow = false
       },
       systemShowChange(flag) {
         this.sysConditionShow = flag;
+        this.userInfoShow = false;
+        this.userScoreShow = false;
+        this.quesBankShowShow = false
+      },
+      quesBankShowChange(flag) {
+        this.quesBankShowShow = flag;
+        this.sysConditionShow = false;
         this.userInfoShow = false;
         this.userScoreShow = false
       }

@@ -1,9 +1,10 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="1" @click="userScoreClick">分数情况</el-menu-item>
-    <el-menu-item index="2" @click="userInfoClick">用户信息</el-menu-item>
-    <el-menu-item index="3" @click="systemClick">系统信息</el-menu-item>
-    <el-menu-item index="4" class="right">
+    <el-menu-item index="quesCondition" @click="userScoreClick">分数情况</el-menu-item>
+    <el-menu-item index="userInfo" @click="userInfoClick">用户信息</el-menu-item>
+    <el-menu-item index="sysCondition" @click="systemClick">系统信息</el-menu-item>
+    <el-menu-item index="quesBank" @click="quesBankClick">题库操作</el-menu-item>
+    <el-menu-item>
       <i class="el-icon-switch-button"></i>
       <span slot="title">
           退出登录
@@ -18,7 +19,7 @@
     name: "ManagerNavMenu",
     data() {
       return {
-        activeIndex: '1',
+        activeIndex: 'quesCondition',
         isShower: true
       }
     },
@@ -31,6 +32,9 @@
       },
       systemClick() {
         this.$emit("sysConditionShowChange", this.isShower)
+      },
+      quesBankClick() {
+        this.$emit('quesBankShowChange', this.isShower)
       }
     }
   }

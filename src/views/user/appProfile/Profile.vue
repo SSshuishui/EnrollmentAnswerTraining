@@ -6,9 +6,9 @@
       <el-container style="height: 540px; margin-top: 3px">
         <!--侧边导航栏-->
         <el-aside width="220px">
-          <nav-menu @infoShowChange="infoShowChange($event)"
-                    @recordShowChange="recordShowChange($event)"
-                    @wrongShowChange="wrongShowChange($event)"/>
+          <nav-menu @infoShowChange="infoShowChange"
+                    @recordShowChange="recordShowChange"
+                    @wrongShowChange="wrongShowChange"/>
         </el-aside>
         <!--中间部分  -->
         <el-container>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  //公共组件
+  // 公共组件
   import MainNavBar from "components/content/mainNavBar/MainNavBar";
   import FootBar from "components/content/footbar/FootBar";
 
@@ -57,18 +57,18 @@
 
     methods: {
       infoShowChange(flag) {
-        this.infoShow = flag
-        this.recordShow = false
+        this.infoShow = flag;
+        this.recordShow = false;
         this.wrongShow = false
       },
       recordShowChange(flag) {
-        this.recordShow = flag
-        this.infoShow = false
+        this.recordShow = flag;
+        this.infoShow = false;
         this.wrongShow = false
       },
       wrongShowChange(flag) {
-        this.wrongShow = flag
-        this.recordShow = false
+        this.wrongShow = flag;
+        this.recordShow = false;
         this.infoShow = false
       }
     }
