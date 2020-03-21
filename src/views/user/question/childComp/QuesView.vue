@@ -1,6 +1,6 @@
 <template>
   <div class="ques-view">
-    <div class="view" v-if="quesType === 'single'">
+    <div class="view" v-show="quesType === 'single'">
       <span>(单选题)</span>
       <span>{{quesStem}}</span>
       <div class="options" v-for="(item,index) in quesItem">
@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="view" v-if="quesType === 'multiple'">
+    <div class="view" v-show="quesType === 'multiple'">
       <span>(多选题)</span>
       <span>{{quesStem}}</span>
       <div v-for="(item,index) in quesItem">
@@ -18,11 +18,11 @@
       </div>
     </div>
 
-    <div class="view" v-if="quesType === 'suggest'">
+    <div class="view" v-show="quesType === 'suggest'">
       <span>(建议题)</span>
       <span>如果您有更好的建议:</span>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
-        <el-form-item label="请告诉我们" prop="desc">
+        <el-form-item label="输入您的建议" prop="desc">
           <el-input type="textarea" v-model="ruleForm.desc"></el-input>
         </el-form-item>
       </el-form>

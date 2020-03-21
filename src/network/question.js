@@ -10,10 +10,11 @@ export function getQuestions(type, page) {
   })
 }
 
-export function getQuesItem(type) {
-  return request({
-    params: {
-      type
+export class Question {
+  constructor(quesStem, quesItems) {
+    this.quesStem = quesStem
+    for (item of quesItems){
+      this.quesItem = item
     }
-  })
+  }
 }

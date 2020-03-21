@@ -1,212 +1,79 @@
 <template>
-  <div class="loginBox">
+  <div class="login">
     <div class="header">
-      <h4>欢迎登录答题培训系统</h4>
+      <h2>招生培训系统账号登录</h2>
     </div>
-    <div class="main">
-      <div>
-        <div class="inpBox">
-          <input type="text" placeholder="用户名/手机号码" v-model="account" />
-        </div>
-        <div class="inpBox">
-          <input type="password" placeholder="密码" v-model="password" />
-        </div>
-        <div class="inpBox">
-          <input type="password" placeholder="密码" v-model="assure" />
-          <img src="" alt="">
-        </div>
-      </div>
-
-      <button class="submit" @click="loginHandle">立即登录</button>
-    </div>
-
-    <div class="register">
-      <router-link to="/register">立即注册</router-link>|
-      <a>忘记密码</a>
-    </div>
-
+    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-position="left" label-width="100px" class="demo-ruleForm">
+      <el-form-item label="手机号码" prop="phone">
+        <el-input type="text" v-model="ruleForm.phone" autocomplete="off" placehoder="请输入手机号码"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="pass">
+        <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placehoder="请输入密码"></el-input>
+      </el-form-item>
+      <el-form-item label="验证码" prop="vCode">
+        <el-input v-model.number="ruleForm.vCode" placehoder="请输入验证码"></el-input>
+        <validate-code @getCode="getCode"/>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-link type="success" href="/register">没有账号？去注册</el-link>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "Login",
-    data() {
-      return {
-        account: '',
-        password: '',
-        assure: ''
-      }
-    },
-    methods: {
-      // 登录  表单校验 + 校验验证码正确性
-      loginHandle() {
+  import { FormValidate } from 'common/mixin'
+  import { mapActions } from 'vuex'
 
-      }
+  export default {
+    name: 'Login',
+    mixins: [FormValidate],
+    methods: {
+      ...mapActions(['userLogin']),
+      // 提交表单
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.userLogin().then(res => {
+              this.$toast.show(res)
+            })
+            // 设置定时器进行路由跳转
+            setTimeout(() => {
+              this.$router.replace('/home')
+            }, 2000)
+          } else {
+            this.userLogin().then(() => {
+              this.$toast.show('登录失败，请稍后再试！')
+            })
+            return false;
+          }
+        });
+      },
+      // 重置表单
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+
     }
   }
+
 </script>
 
-<style lang='less'>
-  @C1: #666;
-  @C2: #d3d3d3;
+<style scoped>
+  .login {
+    width: 350px;
+    height: 60%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-  .loginBox {
-    align-content: center;
-    padding-top: 12%;
-    height: 100%;
-    font-size: 0.28rem;
-    background: url("~assets/img/login/loginBg.png") no-repeat;
-    background-size: 100%;
-
-    .header,
-    .main,
-    .register,
-    .other {
-      margin: 0 auto;
-      width: 40%;
-    }
-
-    .header {
-      margin-bottom: 0.2rem;
-
-      h4 {
-        line-height: 1.6rem;
-        font-size: 1.7rem;
-        text-align: center;
-        font-weight: normal;
-        margin-bottom: 2rem;
-      }
-    }
-
-    .main {
-      .inpBox {
-        position: relative;
-        font-size: 1rem;
-        height: 3rem;
-        border-bottom: 0.1rem solid @C2;
-
-        input {
-          border: none;
-          width: 50%;
-          height: 2.85rem;
-
-          &.short {
-            width: 60%;
-          }
-        }
-
-        a {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #c49c63;
-
-          &.noClick {
-            color: @C1;
-          }
-        }
-      }
-
-      .submit {
-        display: block;
-        margin-top: 1rem;
-        width: 100%;
-        height: 2rem;
-        line-height: 1rem;
-        text-align: center;
-        font-size: 0.9rem;
-        color: #fff;
-        border: none;
-        border-radius: 0.7rem;
-        background: linear-gradient(to right, #e4bb7e, #d1a96e);
-        box-shadow: 0 0.08rem 0.04rem @C2;
-      }
-
-      .changeBtn {
-        margin-top: 0.5rem;
-        line-height: 1.5rem;
-        font-size: 1rem;
-        text-align: center;
-        color: @C1;
-      }
-    }
-
-    .register {
-      margin-top: 0.5rem;
-      line-height: 1.5rem;
-      font-size: 1rem;
-      text-align: center;
-
-      a {
-        padding: 0 0.6rem;
-        margin-top: 0.5rem;
-        line-height: 1.5rem;
-        color: @C1;
-      }
-    }
-
-    .other {
-      margin-top: 0.4rem;
-
-      span {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        color: @C1;
-
-        &:before,
-        &:after {
-          content: "";
-          height: 0;
-          width: 20%;
-          border: 0.01rem solid @C2;
-        }
-      }
-
-      div {
-        margin-top: 0.3rem;
-        text-align: center;
-        font-size: 0;
-
-        a {
-          display: inline-block;
-          margin: 0 0.15rem;
-          width: 0.6rem;
-          height: 0.6rem;
-          border-radius: 50%;
-          background: url("~assets/img/login/icons_type.png") no-repeat;
-          background-size: 2.8rem;
-
-          &:nth-child(1) {
-            background-color: #ed9090;
-            background-position: -0.92rem 0.03rem;
-          }
-
-          &:nth-child(2) {
-            background-color: #6bb6ea;
-            background-position: -1.5rem 0.03rem;
-          }
-
-          &:nth-child(3) {
-            background-color: #00be00;
-            background-position: -2.2rem 0.03rem;
-          }
-        }
-      }
-    }
-
-    .footer {
-      margin-top: 0.8rem;
-      line-height: 0.5rem;
-      text-align: center;
-      color: @C1;
-
-      span {
-        margin: 0 0.15rem;
-      }
-    }
+  .header{
+    padding: 6px;
+    margin-bottom: 16px;
+    margin-left: 20px;
   }
 </style>

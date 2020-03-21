@@ -9,6 +9,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    userLogin: {},   // 用户登录信息
     questionList: []   // 题目存储列表
   },
   mutations,

@@ -8,7 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
-// 安装EleementUI插件
+// 安装ElementUI插件
 Vue.use(ElementUI)
 // 安装toast插件
 Vue.use(toast)

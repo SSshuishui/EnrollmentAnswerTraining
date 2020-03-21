@@ -2,19 +2,11 @@ import {request} from "./request";
 
 export function getSystemData() {
   return request({
-    // url: '/appHome/multidata'
+    // 请求数据的地址
+
   })
 }
-//
-// export function getHomeGoods(type, page) {
-//   return request({
-//     url: '/appHome/data',
-//     params: {
-//       type,
-//       page
-//     }
-//   })
-// }
+
 
 export function deleteUser(id) {
 

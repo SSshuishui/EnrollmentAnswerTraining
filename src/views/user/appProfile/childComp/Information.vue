@@ -12,7 +12,7 @@
           <td>赵祥</td>
         </tr>
         <tr>
-          <td class="text-r">所在部门：</td>
+          <td class="text-r">所在学院：</td>
           <td>软件学院</td>
         </tr>
         <tr>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
 
   export default {
     name: "Information",
@@ -42,6 +43,7 @@
       };
     },
     methods: {
+      ...mapActions(['modifyInfo']),
       open() {
         this.$prompt('请输入手机号码', '提示', {
           confirmButtonText: '确定',
@@ -49,9 +51,12 @@
           inputPattern: /^1[3456789]\d{9}$/,
           inputErrorMessage: '手机号码格式不正确'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '修改成功!'
+          this.modifyInfo().then(res => {
+            this.$toast.show(res)
+          })
+        }).catch(() => {
+          this.modifyInfo.then(res => {
+            this.$toast.show('修改失败！')
           })
         })
       }
