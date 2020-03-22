@@ -13,16 +13,20 @@
         <UserQuesCondition v-show="userScoreShow"/>
         <user-info v-show="userInfoShow"/>
         <system-condition v-show="sysConditionShow"/>
+        <ques-bank v-show="quesBankShow"/>
+
       </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
-  import UserQuesCondition from "./childComp/UserQuesCondition";
   import ManagerNavMenu from "./childComp/ManagerNavMenu";
+
+  import UserQuesCondition from "./childComp/UserQuesCondition";
   import UserInfo from "./childComp/UserInfo";
   import SystemCondition from "./childComp/SystemCondition";
+  import quesBank from "./childComp/quesBank";
 
   export default {
     name: "System",
@@ -31,36 +35,37 @@
         userScoreShow: true,
         userInfoShow: false,
         sysConditionShow: false,
-        quesBankShowShow: false,
+        quesBankShow: false
       }
     },
     components: {
       ManagerNavMenu,
       UserQuesCondition,
       UserInfo,
-      SystemCondition
+      SystemCondition,
+      quesBank
     },
     methods: {
       scoreShowChange(flag) {
         this.userScoreShow = flag;
         this.userInfoShow = false;
         this.sysConditionShow = false;
-        this.quesBankShowShow = false
+        this.quesBankShow = false
       },
       infoShowChange(flag) {
         this.userInfoShow = flag;
         this.userScoreShow = false;
         this.sysConditionShow = false;
-        this.quesBankShowShow = false
+        this.quesBankShow = false
       },
       systemShowChange(flag) {
         this.sysConditionShow = flag;
         this.userInfoShow = false;
         this.userScoreShow = false;
-        this.quesBankShowShow = false
+        this.quesBankShow = false
       },
       quesBankShowChange(flag) {
-        this.quesBankShowShow = flag;
+        this.quesBankShow = flag;
         this.sysConditionShow = false;
         this.userInfoShow = false;
         this.userScoreShow = false

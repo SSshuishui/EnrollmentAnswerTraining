@@ -1,6 +1,6 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="quesCondition" @click="userScoreClick">分数情况</el-menu-item>
+    <el-menu-item index="quesCondition" @click="userScoreClick">得分情况</el-menu-item>
     <el-menu-item index="userInfo" @click="userInfoClick">用户信息</el-menu-item>
     <el-menu-item index="sysCondition" @click="systemClick">系统信息</el-menu-item>
     <el-menu-item index="quesBank" @click="quesBankClick">题库操作</el-menu-item>

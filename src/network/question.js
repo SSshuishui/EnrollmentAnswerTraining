@@ -13,8 +13,10 @@ export function getQuestions(type, page) {
 export class Question {
   constructor(quesStem, quesItems) {
     this.quesStem = quesStem
-    for (item of quesItems){
-      this.quesItem = item
-    }
   }
+}
+
+// 异步删除题目
+export async function deleteQues(id) {
+
 }

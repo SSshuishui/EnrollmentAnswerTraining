@@ -41,7 +41,7 @@
     name: "Profile",
     data() {
       return {
-        infoShow: false,
+        infoShow: true,
         recordShow: false,
         wrongShow: false
       }

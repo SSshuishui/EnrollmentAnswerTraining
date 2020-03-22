@@ -8,6 +8,3 @@ export function getSystemData() {
 }
 
 
-export function deleteUser(id) {
-
-}
