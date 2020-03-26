@@ -1,22 +1,23 @@
 <template>
   <div class="modify-user">
     <h2 class="header">信息修改</h2>
-    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-position="left" label-width="100px" class="demo-ruleForm">
+    <el-form :model="userForm" status-icon :rules="rules" ref="userForm" label-position="left" label-width="100px"
+             class="demo-ruleForm">
       <el-form-item label="工号" prop="id">
-        <el-input type="text" v-model="ruleForm.id" autocomplete="off" :placeholder="this.userInfo.id"/>
+        <el-input type="text" v-model="userForm.id" autocomplete="off" :placeholder="this.userInfo.work_id"/>
       </el-form-item>
       <el-form-item label="姓名" prop="name">
-        <el-input type="text" v-model="ruleForm.name" autocomplete="off" :placeholder="this.userInfo.name"/>
+        <el-input type="text" v-model="userForm.name" autocomplete="off" :placeholder="this.userInfo.name"/>
       </el-form-item>
       <el-form-item label="所在学院" prop="school">
-        <el-input type="text" v-model="ruleForm.school" autocomplete="off" :placeholder="this.userInfo.school"/>
+        <el-input type="text" v-model="userForm.school" autocomplete="off" :placeholder="this.userInfo.school"/>
       </el-form-item>
       <el-form-item label="手机号码" prop="phone">
-        <el-input type="text" v-model="ruleForm.phone" autocomplete="off" :placeholder="this.userInfo.phone"/>
+        <el-input type="text" v-model="userForm.phone" autocomplete="off" :placeholder="this.userInfo.phone"/>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button type="primary" @click="submitForm('userForm')">提交</el-button>
+        <el-button @click="resetForm('userForm')">重置</el-button>
         <el-button type="danger" @click="cancelClick">取消</el-button>
       </el-form-item>
     </el-form>
@@ -24,13 +25,20 @@
 </template>
 
 <script>
+  import {User} from "network/user";
+
   export default {
     name: "ModifyUser",
     props: {
       userInfo: {
         type: Object,
-        default: {}
+        default() {
+          return {}
+        }
       }
+    },
+    mounted() {
+      console.log(this.userInfo);
     },
     data() {
       // 检查id
@@ -88,7 +96,8 @@
         idStyle: /^2[0]\d{8}$/,
         nameStyle: /^[\u4E00-\u9FA5]{2,4}$/,
         phoneStyle: /^1[3456789]\d{9}$/,
-        ruleForm: {
+
+        userForm: {
           id: '',
           name: '',
           school: '',
@@ -105,7 +114,7 @@
             {validator: checkSchool, trigger: 'blur'}
           ],
           phone: [
-            { validator: checkPhone, trigger: 'blur' }
+            {validator: checkPhone, trigger: 'blur'}
           ]
         }
       };
@@ -113,10 +122,22 @@
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
+          // 如果
           if (valid) {
-            alert('submit!');
+            // 封装一个user对象
+            const user = {}
+            user.id = this.userInfo.id
+            user.password = this.userInfo.password
+            user.work_id = this.userForm.id
+            user.name = this.userForm.name
+            user.school = this.userForm.school
+            user.phone = this.userForm.phone
+            user.score = this.userInfo.score
+            user.login_time = this.userInfo.login_time
+            user.register_time = this.userInfo.register_time
+
           } else {
-            console.log('error submit!!');
+            this.$alert('修改失败，请稍后再试！')
             return false;
           }
         });
@@ -124,15 +145,17 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
-      cancelClick(){
+
+      cancelClick() {
         this.$emit('cancelClick')
-      }
+      },
+
     }
   }
 </script>
 
 <style scoped>
-  .modify-user{
+  .modify-user {
     position: fixed;
     top: 40%;
     left: 50%;
@@ -144,7 +167,8 @@
     color: #1A1A1A;
     background-color: #F2F6FC;
   }
-  .header{
+
+  .header {
     margin-bottom: 20px;
     text-align: center;
   }

@@ -36,7 +36,7 @@
     name: "navMenu",
     data() {
       return {
-        isCollapse: true,
+        isCollapse: false,
         isShower: true
       };
     },

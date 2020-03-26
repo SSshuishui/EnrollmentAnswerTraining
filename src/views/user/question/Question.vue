@@ -21,8 +21,7 @@
                 :current-page="pageNo"
                 :page-size="1"
                 :total="50"
-                align="center"
-                >
+                align="center">
         </el-pagination>
 
 

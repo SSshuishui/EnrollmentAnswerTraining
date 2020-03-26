@@ -11,7 +11,7 @@
       <el-main style="height: 540px">
         <!--   其他相关组件   -->
         <UserQuesCondition v-show="userScoreShow"/>
-        <user-info v-show="userInfoShow"/>
+        <user-info v-show="userInfoShow" :user-info="getUserInfo"/>
         <system-condition v-show="sysConditionShow"/>
         <ques-bank v-show="quesBankShow"/>
 
@@ -32,6 +32,7 @@
     name: "System",
     data() {
       return {
+        userInfo: {},
         userScoreShow: true,
         userInfoShow: false,
         sysConditionShow: false,
@@ -69,6 +70,9 @@
         this.sysConditionShow = false;
         this.userInfoShow = false;
         this.userScoreShow = false
+      },
+      getUserInfo() {
+
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="quesBank">
+  <div class="ques-bank">
     <el-table
             :data="tableData"
             style="width: 100%"
@@ -38,15 +38,40 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!--   分页     -->
+    <el-pagination
+            class="pagination"
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentPageChange"
+            :current-page="currentPage"
+            :page-sizes="[5, 8, 10, 15]"
+            :page-size="pageSize"
+            :total="totalCount"
+            align="center">
+    </el-pagination>
+
+<!--  修改题目的页面  -->
+    <modify-question v-show="isBoxShow" :ques-info="questionDetail" @cancelClick="cancelClick"/>
   </div>
 </template>
 
 <script>
+  import ModifyQuestion from "components/content/modifyQuestion/ModifyQuestion";
   export default {
     name: "quesBank",
+    components: {
+      ModifyQuestion
+    },
     data() {
       return {
-        tableData: [
+        currentPage: 1,
+        totalCount: 10,
+        tableData: [],
+        pageSize: 5,
+        allQuesData: [
           {
             id: 20200001,
             stem: '第1题的题干信息'
@@ -88,13 +113,38 @@
             stem: '第10题的题干信息'
           }
         ],
-        search: ''
+        search: '',
+        isBoxShow: false,
+        questionDetail: {}
       }
     },
+    mounted() {
+      this.tableData = this.allQuesData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      this.totalCount = this.allQuesData.length
+    },
     methods: {
+      // 页面展示条目数量改变
+      handleSizeChange(val) {
+        this.pageSize = val
+        this.tableData = this.allQuesData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+        this.totalCount = this.allQuesData.length
+      },
+
+      // 当前页面展示信息改变
+      handleCurrentPageChange(val) {
+        this.currentPage = val
+        this.tableData = this.allQuesData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+        this.totalCount = this.allQuesData.length
+      },
+
       // 修改题目
       modifyQuestion(quesInfo) {
+        this.isBoxShow = true
+      },
 
+      // 取消修改页面显示
+      cancelClick() {
+        this.isBoxShow = false
       },
 
       // 删除题目

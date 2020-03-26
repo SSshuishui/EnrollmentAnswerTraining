@@ -1,6 +1,7 @@
 export default {
-  // 获取题目列表
-  questionGetter(state) {
-    return state.questionList
+  // 获取用户信息
+  userInfo(state) {
+    return state.loginUser
   }
+
 }

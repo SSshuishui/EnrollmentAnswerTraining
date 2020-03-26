@@ -1,21 +1,43 @@
+import {request} from "./request";
 
+// 根据用户id 获取单个用户的信息
+export function getUser(id) {
+  return request({
+    url: '/users',
+    params: {
+      id
+    }
+  })
+}
+
+// 获取所有用户的信息
+export function getALLUsers() {
+  return request({
+    url: '/users',
+  })
+}
+
+/**
+ *  添加 || 更新用户信息
+ *  params: user对象
+ */
+
+/**
+ *  删除用户信息
+ *  params； id
+ */
 
 // 导出用户类
 export class User {
   constructor(user) {
-    this.name = user.name
-    this.phone = user.phone
-    this.password = user.password
-    this.school = user.school
+    this.id = user.id;
+    this.name = user.name;
+    this.password = user.password;
+    this.work_id = user.work_id;
+    this.phone = user.phone;
+    this.score = user.score;
+    this.school = user.school;
+    this.login_time = user.login_time;
+    this.register_time = user.register_time
   }
-}
-
-// 异步删除数据库中用户信息
-export async function deleteUser(id) {
-  // sql操作数据库语句
-}
-
-//异步向数据库添加题目
-export async function addQuestion(question) {
-
 }

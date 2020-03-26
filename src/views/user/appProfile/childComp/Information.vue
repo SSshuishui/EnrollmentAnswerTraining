@@ -37,6 +37,14 @@
 
   export default {
     name: "Information",
+    props: {
+      userInfo: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
+    },
     data() {
       return {
         operationVisible: false

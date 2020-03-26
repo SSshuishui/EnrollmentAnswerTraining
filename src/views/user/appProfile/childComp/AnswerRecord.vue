@@ -2,7 +2,7 @@
   <div>
     <el-table
             :data="tableData"
-            height="500"
+            height="480"
             border
             style="width: 100%">
       <el-table-column
@@ -26,6 +26,20 @@
               label="正确率">
       </el-table-column>
     </el-table>
+
+    <!--   分页     -->
+    <el-pagination
+            class="pagination"
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentPageChange"
+            :current-page="currentPage"
+            :page-sizes="[5, 8, 10, 15]"
+            :page-size="pageSize"
+            :total="totalCount"
+            align="center">
+    </el-pagination>
   </div>
 </template>
 
@@ -34,7 +48,11 @@
     name: "AnswerRecord",
     data() {
       return {
-        tableData: [{
+        currentPage: 1,
+        totalCount: 10,
+        tableData: [],
+        pageSize: 5,
+        allRecordData: [{
           date: '2020-05-02',
           name: '张三',
           score: '30',
@@ -71,10 +89,33 @@
           accuracy: '90%'
         }]
       }
+    },
+    mounted() {
+      this.tableData = this.allRecordData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      this.totalCount = this.allRecordData.length
+    },
+    methods: {
+      // 页面展示条目数量改变
+      handleSizeChange(val) {
+        this.pageSize = val
+        this.tableData = this.allRecordData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+        this.totalCount = this.allRecordData.length
+      },
+
+      // 当前页面展示信息改变
+      handleCurrentPageChange(val) {
+        this.currentPage = val
+        this.tableData = this.allRecordData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+        this.totalCount = this.allRecordData.length
+      }
     }
   }
 </script>
 
 <style scoped>
-
+  .pagination{
+    position: fixed;
+    bottom: 70px;
+    left: 25%;
+  }
 </style>
