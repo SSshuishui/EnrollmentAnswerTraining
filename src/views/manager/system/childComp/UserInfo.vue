@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="user-info">
     <el-table
             :data="allUserData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()) || data.school || data.id)"
             style="width: 100%"

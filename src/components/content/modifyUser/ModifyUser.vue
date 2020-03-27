@@ -3,8 +3,8 @@
     <h2 class="header">信息修改</h2>
     <el-form :model="userForm" status-icon :rules="rules" ref="userForm" label-position="left" label-width="100px"
              class="demo-ruleForm">
-      <el-form-item label="工号" prop="id">
-        <el-input type="text" v-model="userForm.id" autocomplete="off" :placeholder="this.userInfo.work_id"/>
+      <el-form-item label="工号" prop="work_id">
+        <el-input type="text" v-model="userForm.work_id" autocomplete="off" :placeholder="this.userInfo.work_id"/>
       </el-form-item>
       <el-form-item label="姓名" prop="name">
         <el-input type="text" v-model="userForm.name" autocomplete="off" :placeholder="this.userInfo.name"/>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-  import {User} from "network/user";
 
   export default {
     name: "ModifyUser",
@@ -37,15 +36,9 @@
         }
       }
     },
-    mounted() {
-      console.log(this.userInfo);
-    },
     data() {
-      // 检查id
-      let checkId = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('工号不能为空！'));
-        }
+      // 检查work_id
+      let checkWork_Id = (rule, value, callback) => {
         setTimeout(() => {
           if (!this.idStyle.test(value)) {
             callback(new Error('工号格式不合法！'));
@@ -57,9 +50,6 @@
 
       // 检查姓名
       let checkName = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('姓名不能为空！'));
-        }
         setTimeout(() => {
           if (!this.nameStyle.test(value)) {
             callback(new Error('姓名格式不合法！'));
@@ -69,21 +59,8 @@
         }, 1000);
       };
 
-      // 检查学院
-      let checkSchool = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('学院不能为空！'));
-        }
-        setTimeout(() => {
-          callback()
-        })
-      };
-
       // 检查手机号码
       let checkPhone = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('手机号码不能为空！'));
-        }
         setTimeout(() => {
           if (!this.phoneStyle.test(value)) {
             callback(new Error('手机号码格式不合法！'));
@@ -98,20 +75,20 @@
         phoneStyle: /^1[3456789]\d{9}$/,
 
         userForm: {
-          id: '',
+          work_id: '',
           name: '',
           school: '',
           phone: ''
         },
         rules: {
-          id: [
-            {validator: checkId, trigger: 'blur'}
+          work_id: [
+            {validator: checkWork_Id, trigger: 'blur'}
           ],
           name: [
             {validator: checkName, trigger: 'blur'}
           ],
           school: [
-            {validator: checkSchool, trigger: 'blur'}
+            {trigger: 'blur'}
           ],
           phone: [
             {validator: checkPhone, trigger: 'blur'}
@@ -126,15 +103,15 @@
           if (valid) {
             // 封装一个user对象
             const user = {}
-            user.id = this.userInfo.id
-            user.password = this.userInfo.password
-            user.work_id = this.userForm.id
-            user.name = this.userForm.name
-            user.school = this.userForm.school
-            user.phone = this.userForm.phone
-            user.score = this.userInfo.score
-            user.login_time = this.userInfo.login_time
-            user.register_time = this.userInfo.register_time
+            // 初始化默认值为传过来的对象
+            Object.assign(user, this.userInfo)
+
+            user.work_id = this.userForm.work_id !== '' ? this.userInfo.work_id : user.work_id;
+            user.name = this.userForm.name !== '' ? this.userForm.name : user.name;
+            user.school = this.userForm.school !== '' ? this.userForm.school : user.school;
+            user.phone = this.userForm.phone !== '' ? this.userForm.phone : user.phone;
+
+            // console.log(user);
 
           } else {
             this.$alert('修改失败，请稍后再试！')

@@ -2,20 +2,58 @@
   <div class="ques-bank">
     <el-table
             :data="tableData"
-            style="width: 100%"
-            border
-            height="500px">
+            style="width: 100%">
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="table-expand">
+            <el-form-item  label="ID">
+              <span>{{props.row.id}}</span>
+            </el-form-item >
+            <el-form-item  label="类型:">
+              <span>{{props.row.type}}</span>
+            </el-form-item>
+            <el-form-item label="范围:">
+              <span>{{props.row.scope}}</span>
+            </el-form-item>
+            <el-form-item label="题干信息:">
+              <span>{{props.row.title}}</span>
+            </el-form-item>
+            <el-form-item label="选项A:">
+              <span>{{props.row.answerA}}</span>
+            </el-form-item>
+            <el-form-item label="选项B:">
+              <span>{{props.row.answerB}}</span>
+            </el-form-item>
+            <el-form-item label="选项C:">
+              <span>{{props.row.answerC}}</span>
+            </el-form-item>
+            <el-form-item label="选项D:">
+              <span>{{props.row.answerD}}</span>
+            </el-form-item>
+            <el-form-item label="正确答案:">
+              <span>{{props.row.answer}}</span>
+            </el-form-item>
+            <el-form-item label="答题人数:">
+              <span>{{props.row.number}}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
       <el-table-column
-              label="id"
+              label="ID"
               prop="id">
       </el-table-column>
       <el-table-column
-              label="题干信息"
-              prop="stem">
+              label="范围"
+              prop="scope">
       </el-table-column>
       <el-table-column
-              label="上次修改时间"
-              prop="lastTime">
+              label="题干信息"
+              prop="title">
+      </el-table-column>
+      <el-table-column
+              label="正确答案"
+              prop="answer">
       </el-table-column>
       <el-table-column
               align="center">
@@ -49,8 +87,7 @@
             :current-page="currentPage"
             :page-sizes="[5, 8, 10, 15]"
             :page-size="pageSize"
-            :total="totalCount"
-            align="center">
+            :total="totalCount">
     </el-pagination>
 
 <!--  修改题目的页面  -->
@@ -74,7 +111,15 @@
         allQuesData: [
           {
             id: 20200001,
-            stem: '第1题的题干信息'
+            type: '单选题',
+            scope: '北京市',
+            title: '第1题的题干信息',
+            answerA: '第一题的A',
+            answerB: '第一题的B',
+            answerC: '第一题的C',
+            answerD: '第一题的D',
+            answer: 'A',
+            number: '80%'
           },
           {
             id: 20200002,
@@ -115,7 +160,17 @@
         ],
         search: '',
         isBoxShow: false,
-        questionDetail: {}
+        questionDetail: {
+          id: '',
+          type: '',
+          scope: '',
+          title: '',
+          answer: '',
+          answerA: '',
+          answerB: '',
+          answerC: '',
+          answerD: ''
+        }
       }
     },
     mounted() {
@@ -140,6 +195,17 @@
       // 修改题目
       modifyQuestion(quesInfo) {
         this.isBoxShow = true
+
+        // 传递一个题目的信息到子组件
+        this.questionDetail.id = quesInfo.id
+        this.questionDetail.type = quesInfo.type
+        this.questionDetail.scope = quesInfo.scope
+        this.questionDetail.answer = quesInfo.answer
+        this.questionDetail.title = quesInfo.title
+        this.questionDetail.answerA = quesInfo.answerA
+        this.questionDetail.answerB = quesInfo.answerB
+        this.questionDetail.answerC = quesInfo.answerC
+        this.questionDetail.answerD = quesInfo.answerD
       },
 
       // 取消修改页面显示
@@ -163,5 +229,21 @@
 </script>
 
 <style scoped>
-
+  .pagination{
+    position: fixed;
+    bottom: 30px;
+    left: 25%;
+  }
+  .table-expand {
+    font-size: 0;
+  }
+  .table-expand label {
+    width: 90px;
+    color: #99a9bf;
+  }
+  .table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+  }
 </style>

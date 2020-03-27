@@ -39,6 +39,5 @@ export class Question {
     this.numberB = question.numberB
     this.numberC = question.numberC
     this.numberD = question.numberD
-
   }
 }
